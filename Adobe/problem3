@@ -1,0 +1,27 @@
+// 481. Magical String
+
+class Solution {
+    public int magicalString(int n) {
+        if(n==0)return 0;
+        if(n<4)return 1;
+
+        char s[]=new char[n+1];
+        s[1]=s[2]='2';
+        int ans =1;
+        int need = 2,cur=3;
+
+        while(cur<n){
+            if(s[need] == '2'){
+                s[cur] = s[cur+1] = (s[cur-1] == '2' ) ? '1' : '2';
+                cur += 2; 
+            }else{
+                s[cur] = (s[cur-1] == '2' ) ? '1' : '2';
+                cur++;
+            }
+            need++;
+        }
+        for(int i=0;i<n;i++) if(s[i] == '1') ans++;
+    return ans;   
+    }
+}
+ 
